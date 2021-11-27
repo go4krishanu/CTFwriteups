@@ -1,0 +1,52 @@
+TCS HackQuest Season 6 — Write Up — How I solved — My Methodology
+
+Refer Link : https://go4krishanu.medium.com/tcs-hackquest-season-6-write-up-how-i-solved-my-methodology-d8f1baaed70d
+
+TCS HackQuest Season 6 is an ongoing CTF competition conducted by Tata Consultancy Services.
+This is a great competition where TCS calls all the Ethical hackers to solve their Capture the Flag challenges. This competition is related to cyber-security and its importance in today’s online world.
+There are many other platforms where you can start participating and test your cybersecurity skills. Some of the most famous platforms are listed below :
+Hack The Box: https://ctf.hackthebox.com/
+Hacker101: https://ctf.hacker101.com/
+PicoCTF : https://picoctf.org/
+Now let's come back on the topic: My Methodology to solve TCS HackQuest Season 6 challenges.
+I got just 3 challenges which summed up to 400 points.
+Let's get started,
+JS Master :
+Flag : HQPlay{jsisfun}
+Points: 100
+Hints: Time to play with JS
+Description: Can you recover the key hiding in plain sight?
+Solution: At first I notice that when I clicked on the website link given on the challenge there was a JavaScript alert at the top that gives a hint that the source code must contain some JavaScript code.
+
+After carefully observing the source code of the website I got the JavaScript code and it has a Base64 encode code over there.
+
+I quickly decode the code using the online decoders available all over the web and got the main key value that will retrieve the flag then I put the decode key value on the “ ENTER KEY VALUE” search box to retrieve the flag.
+
+2. The Flash:
+Flag : HQPlay{thisisflag}
+Points: 100
+Hints: I’m Barry Allen and I’m the fastest man alive
+Description: Iris and Flash are playing a hide and seek game. Flash being the fastest man alive is not visible to Iris. Can you help Iris spot Flash?
+Solution: Firstly I have no idea what going on with the website link the UUID is changing rapidly. That tricks my mind that why is the UUID is changing so rapidly. Then I look at the hint it says “Fastest”.
+
+When I am clicking the button then only the UUID changing and also the text is changed from : Let’s Start to Gone in a Flash for some UUID.
+After this, I thought let's give it a try and inspect the source code of the website and let's play with the UUID. I notice that when I am changing the UUID in the source code the <script> of the website source code is also changed after the UUID is changed.
+This thing triggers my mind and I kept on changing the UUID from 1 -10 (UUID = 1 — UUID 10). After doing these I notice that in UUID=5 I got my flag listed on the <script> code
+URL : view-source:https://play.tcshackquest.com/catchme?uuid=5
+<script> window.location = “/catchme?uuid=6”; window.localStorage.setItem(“flag”, “HQPlay{thisisflag}”); </script>
+
+3. Elawn Musk
+Flag : HQPlay{thisisflag}
+Points: 200
+Hints: Special gift from Elawn Musk
+Description: Elawn Musk has sent a special surprise for our Hackquest participants via Twitter. As always, Elawn Musk has done it in a different way. Here is a collection of his tweets. Try to find a special surprise.
+Solution: First of all, the challenge itself says to download the Tweet Collection. Let's download it and let's get started.
+
+After opening the excel file I got shocked there was a total of 2826 rows with all the tweets and all those details. I was unable to find any hint on the excel file. I tried 2–3 days but I can't find any hints on the excel file.
+But on the 4th day, I thought let's search the word “special” as it was mentioned in the challenge description, and guess what I found the hash that was encrypted. But I was unable to find the secret key that will be used to decrypt the hash code.
+After carefully examining the excel file I found that the tweet from hqteam. Gives a lot of hints and I got to know the secret key and also that it was an AES ECB hash code and we have to decrypt the code in AES ECB with padding.
+So I did decrypt the code but I was unable to get any hints because the code I got was gibberish. Then I see that it says padding on one of his tweet collections. I quickly removed the first 8 characters of the hash code and again decrypt the same thing and now I got something interesting. I got the secret key and I put that key on the website to retrieve the flag and in this way, I solved all the 3 challenges.
+
+Much thanks to you for perusing it till here, kindly offer this article and applaud permeability as it would help other people and me also to bring some more CTF arrangements.
+I trust this article gave you thought about how to solve CTF Challenges. Keep learning and see you in the main round! Best of Luck
+#keephusling #ctf #cybersecurity #ethicalhacking
